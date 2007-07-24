@@ -1,0 +1,57 @@
+  [4;36;1mSQL (0.005687)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003647)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001159)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003598)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.005275)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.006578)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004051)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001227)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.017871)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.016459)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007648)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.011314)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001531)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007642)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.008648)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001621)[0m   [0;1mINSERT INTO logs ("name", "status", "shasum", "source") VALUES('fake', 'transferring', '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;36;1mSQL (0.009119)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.010550)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003476)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005341)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.018313)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001358)[0m   [0;1mINSERT INTO logs ("name", "status", "shasum", "source") VALUES('fake', 'transferring', '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;36;1mSQL (0.011495)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006318)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001449)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007010)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003840)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.002046)[0m   [0;1mINSERT INTO logs ("name", "status", "shasum", "source") VALUES('fake', 'transferring', '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;35;1mBeaver::DB::Log Load (0.002263)[0m   [0mSELECT * FROM logs WHERE (logs."name" = 'fake') LIMIT 1[0m
+  [4;36;1mSQL (0.007160)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004380)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001155)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005020)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.011042)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001202)[0m   [0;1mINSERT INTO logs ("name", "status", "shasum", "source") VALUES('fake', 'transferring', '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001989)[0m   [0mSELECT * FROM logs WHERE (logs."name" = 'fake') LIMIT 1[0m
+  [4;36;1mSQL (0.006326)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003876)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001457)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005418)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004377)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001602)[0m   [0;1mINSERT INTO logs ("name", "status", "shasum", "source") VALUES('fake', 'transferring', '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001416)[0m   [0mSELECT * FROM logs WHERE (logs."name" = 'fake') LIMIT 1[0m
