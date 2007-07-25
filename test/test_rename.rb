@@ -38,21 +38,18 @@ class TestRename < Test::Unit::TestCase
     files = @rename.rename(@filenames, :prepend => "monkey_")
     delete_test_files(files, "Rename single file exists")
   end
- # 
- # def test_rename_double
- #   name = "monkey_#{@filenames[0]}_monkey"
- #   @rename.rename(@filenames, :prepend => "monkey_", :append => "_monkey")
- #   assert(FileTest.file?(name), "Prepended and Appended file exists")
- #   File.unlink(name) if FileTest.file?(name)
- # end
- # 
- # def test_rename_block
- #   name = "monkey_#{@filenames[0]}"
- #   @rename.rename(@filenames) do |file|
- #     "monkey_#{file}"
- #   end
- #   assert(FileTest.file?(name), "Block modified file exists")
- #   File.unlink(name) if FileTest.file?(name)
- # end
+  
+  def test_rename_double
+    files = @rename.rename(@filenames, :prepend => "monkey_", :append => "_monkey")
+    delete_test_files(files, "Rename single file exists")
+  end
+  
+  def test_rename_block
+    files = @rename.rename(@filenames) do |file|
+      "#{file}_mastodon"
+    end
+    delete_test_files(files, "Rename with a blog works")
+  end
+
 end
 
