@@ -21,14 +21,20 @@ module Beaver
   class Delete    
     attr_accessor :files
    
-    # Creates a new Beaver::Rename object.  Requires a directory for the
-    # resulting renamed files.
-    def initialize(dir)
+    # Creates a new Beaver::Delete object.
+    def initialize()
       @files = Array.new
     end
     
-    # Append "with" to the end of the filename.
-    def delete(file)
+    # Deletes a list of files
+    def delete(files)
+      files.each do |file|
+        delete_file(file)
+      end
+    end
+    
+    # Deletes a given file
+    def delete_file(file)
       File.unlink(file) if FileTest.file?(file)
     end
     
