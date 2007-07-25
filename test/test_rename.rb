@@ -4,44 +4,55 @@ require 'find'
 class TestRename < Test::Unit::TestCase
   
   def setup
-    @find = Beaver::FindFile.new()
-    @find.search(FINDDIR, :recurse => true) do |file|
-      @find.add_file(file) if file =~ /foobar/
-    end
-    @compress = Beaver::Compress.new(COMPRESSDIR)
+    @filenames = [ File.join(RENAMEDIR, "fishheads") ]
+    file = File.new(@filenames[0], 'w')
+    file.puts "roly poly fish heads, eat them up yum!"
+    file.close
+    
+    @rename = Beaver::Rename.new(RENAMEDIR)
   end
   
-  def test_no_compressdir
-    failed = false
-    begin
-      c = Beaver::Compress.new('/monkeybutt')
-    rescue ArgumentError
-      failed = true
-    end
-    assert(failed, "Compress dies on missing directory")
+  def test_append
+    files = @rename.append(@filenames, "_monkey")
+    delete_test_files(files, "Appended file exists")
   end
 
-  def test_gzip
-    compressed_files = @compress.gzip(@find.files)
-    compressed_files.each do |file|
-      assert(FileTest.file?(file), "Compressed file exists.")
-      assert(file =~ /.gz$/, "File ends in .gz")
-    end
-  end
-
-  def test_compress
-    compressed_files = @compress.compress(@find.files, :with => :gzip)
-    compressed_files.each do |file|
-      assert(FileTest.file?(file), "Compressed file exists.")
-      assert(file =~ /.gz$/, "File ends in .gz")
-    end
+  def test_prepend
+    files = @rename.prepend(@filenames, "monkey_")
+    delete_test_files(files, "Prepended file exists")
   end
   
-  def teardown
-    Find.find(COMPRESSDIR) do |file|
-      File.unlink(file) if file =~ /\.gz$/
-    end
+  def test_both
+    files = @rename.both(@filenames, "monkey_", "_monkey")
+    delete_test_files(files, "A Prepended and Appended file exists")
   end
   
+  def delete_test_files(files, teststatus)
+    files.each do |f|
+      assert(FileTest.file?(f), teststatus)
+      File.unlink(f) if FileTest.file?(f)
+    end
+  end
+ 
+  def test_rename_single
+    files = @rename.rename(@filenames, :prepend => "monkey_")
+    delete_test_files(files, "Rename single file exists")
+  end
+ # 
+ # def test_rename_double
+ #   name = "monkey_#{@filenames[0]}_monkey"
+ #   @rename.rename(@filenames, :prepend => "monkey_", :append => "_monkey")
+ #   assert(FileTest.file?(name), "Prepended and Appended file exists")
+ #   File.unlink(name) if FileTest.file?(name)
+ # end
+ # 
+ # def test_rename_block
+ #   name = "monkey_#{@filenames[0]}"
+ #   @rename.rename(@filenames) do |file|
+ #     "monkey_#{file}"
+ #   end
+ #   assert(FileTest.file?(name), "Block modified file exists")
+ #   File.unlink(name) if FileTest.file?(name)
+ # end
 end
 
