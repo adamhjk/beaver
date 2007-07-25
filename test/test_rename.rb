@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 require 'find'
 
-class TestCompress < Test::Unit::TestCase
+class TestRename < Test::Unit::TestCase
   
   def setup
     @find = Beaver::FindFile.new()

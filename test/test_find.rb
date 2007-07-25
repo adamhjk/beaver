@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
 class TestFind < Test::Unit::TestCase
-  FINDDIR = File.join(File.dirname(__FILE__), 'data')
   
   def setup
     @find = Beaver::FindFile.new()

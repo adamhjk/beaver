@@ -18,6 +18,8 @@
 require 'find'
 
 module Beaver
+  
+  # Finds files according to a block
   class FindFile    
     attr_accessor :files
     
@@ -25,11 +27,14 @@ module Beaver
       @files = Array.new
     end
     
+    # Add a new file to the list of files that match.  De-dupes.
     def add_file(file)
       @files << file unless @files.detect { |f| f == file }
     end
     
-    def search(dir, args, &block)
+    # Takes a directory to search and a block.  Each file gets yielded to the
+    # block.  Ideally, the block will call add_file if the file matches.  
+    def search(dir, args=nil, &block)
       files = Array.new
       Find.find(dir) do |path|
         file = block.call(path) if FileTest.file?(path)

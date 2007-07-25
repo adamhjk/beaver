@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
 class TestDB < Test::Unit::TestCase
-  DBFILE = File.join(File.dirname(__FILE__), 'db', 'testing.sqlite')  
   
   def setup
     ActiveRecord::Base.establish_connection(

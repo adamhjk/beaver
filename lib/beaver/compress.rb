@@ -16,23 +16,52 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 module Beaver
-  class FindFile    
+  #
+  # Compresses a set of files with the given compression mechanism.
+  #
+  class Compress    
+    attr_reader :compress_dir
     attr_accessor :files
-    
-    def initialize
+   
+    # Creates a new Beaver::Compress object.  Requires a directory for the
+    # resulting compressed files.
+    def initialize(dir)
+      raise ArgumentError, "Directory #{dir} must exist!" unless FileTest.directory?(dir)
+      @compress_dir = dir
       @files = Array.new
     end
-    
-    def add_file(file)
-      @files << file unless @files.detect { |f| f == file }
-    end
-    
-    def search(dir, args, &block)
-      files = Array.new
-      Find.find(dir) do |path|
-        file = block.call(path) if FileTest.file?(path)
-        files << file if file != nil
+
+    # Takes a list of files, an optional argument list, and possibly a block.
+    # If given just a list of files, it will gzip them.  If args[:with]
+    # matches a method name in this class, it will use that to compress the 
+    # files.  If given a block, it simply yields each file to the block.
+    def compress(files, args=nil, &block)
+      if block
+        block.call(files)
+      elsif args && args[:with]
+        files.each do |f|
+          self.method(args[:with]).call(f)
+        end
+      else
+        gzip(files)
       end
+      @files
     end
+    
+    # Gzips the list of files.
+    def gzip(files)
+      cmd = `which gzip`.chomp!
+      # TODO:  This might suck, if you have files with the same basename in multiple subdirectories.
+      files.each do |f|
+        compress_file_name = File.join(@compress_dir, "#{File.basename(f)}.gz")
+        output = `#{cmd} -c #{f} > #{compress_file_name}`
+        if output == false
+          raise RuntimeError, "Cannot compress, gzip error #{$?}: #{output}"
+        end
+        @files << compress_file_name
+      end
+      @files
+    end
+    
   end
 end
