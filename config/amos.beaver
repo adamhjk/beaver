@@ -1,0 +1,17 @@
+
+find('/srv/avvo/shared/log', :recurse => false) do |file|
+  add_file(file) if file =~ /^foobar_production/
+end
+
+compress(:with => :gzip)
+
+rename do |file|
+  hostname = `hostname`
+  date = `date`
+  result = "#{hostname}_#{file}_#{date}"
+end
+
+transfer(:with => :rsync, :host => 'nobody', :ssh_key => 'ssh_dsa')
+transfer(:with => :s3, :keys =>  foo)
+
+delete(:keep => 10)
