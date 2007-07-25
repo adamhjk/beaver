@@ -51,7 +51,7 @@ module Beaver
     # Gzips the list of files.
     def gzip(files)
       cmd = `which gzip`.chomp!
-      # TODO:  This might suck, if you have files with the same basename in multiple subdirectories.
+      # FIXME:  This might suck, if you have files with the same basename in multiple subdirectories.
       files.each do |f|
         compress_file_name = File.join(@compress_dir, "#{File.basename(f)}.gz")
         output = `#{cmd} -c #{f} > #{compress_file_name}`
