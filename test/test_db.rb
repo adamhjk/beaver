@@ -3,16 +3,7 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 class TestDB < Test::Unit::TestCase
   
   def setup
-    ActiveRecord::Base.establish_connection(
-      :adapter => 'sqlite3',
-      :database => DBFILE
-    ) 
-    ActiveRecord::Base.logger = Logger.new(File.open('../logs/database.log', 'a'))  
-    
-    ActiveRecord::Migrator.migrate(
-      File.join(File.dirname(__FILE__), '..', 'db', 'migrate'),
-      nil  
-    )
+    TestHelp.establish_ar
   end
   
   def test_db_log
@@ -20,7 +11,8 @@ class TestDB < Test::Unit::TestCase
       :name => 'fake',
       :shasum => '4e98e2e06bd6006f27fafe30af5ec13a59ad470e',
       :source => 'unit test',
-      :status => 'transferring'
+      :status => 'transferring',
+      :logdate => Time.now
     )
     assert(log.save, "Created a new log")
     fake_log = Beaver::DB::Log.find_by_name('fake')
@@ -29,6 +21,6 @@ class TestDB < Test::Unit::TestCase
   end
   
   def teardown
-    File.unlink(DBFILE)
+    TestHelp.teardown_ar
   end
 end

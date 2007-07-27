@@ -51,5 +51,8 @@ class TestRename < Test::Unit::TestCase
     delete_test_files(files, "Rename with a blog works")
   end
 
+  def teardown
+    TestHelp.delete_renamed_files
+  end
 end
 

@@ -1,0 +1,14 @@
+# Finding logs!
+
+# Configure this job
+set :source => "unit tests"
+set :compress_directory => File.expand_path(File.join(File.dirname(__FILE__), 'compress'))
+set :rename_directory => File.expand_path(File.join(File.dirname(__FILE__), 'rename'))
+
+find(File.expand_path(File.join(File.dirname(__FILE__), 'find'))) do |file|
+  add_file(file) if file =~ /^foobar_production/
+end
+compress(:with => :gzip)
+rename(:prepend => `hostname`.chomp! + "_")
+transfer(:with => :scp)
+delete(:keep => 10)

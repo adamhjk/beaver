@@ -38,9 +38,7 @@ class TestCompress < Test::Unit::TestCase
   end
   
   def teardown
-    Find.find(COMPRESSDIR) do |file|
-      File.unlink(file) if file =~ /\.gz$/
-    end
+    TestHelp.delete_compressed_files
   end
   
 end

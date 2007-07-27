@@ -16,6 +16,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 require 'find'
+require 'parsedate'
+require 'digest/sha1'
 
 module Beaver
   
@@ -28,8 +30,17 @@ module Beaver
     end
     
     # Add a new file to the list of files that match.  De-dupes.
-    def add_file(file)
-      @files << file unless @files.detect { |f| f == file }
+    def add_file(file,datetime=nil)
+      if datetime
+        res = ParseDate.parsedate(datetime)
+        datetime = Time.local(*res)
+      else
+        stat = File.stat(file)
+        datetime = stat.mtime
+      end
+      file_entry = [ file, datetime, Digest::SHA1.hexdigest(IO.read(file)) ]
+      @files << file_entry unless @files.detect { |f| f == file_entry }
+      file_entry
     end
     
     # Takes a directory to search and a block.  Each file gets yielded to the

@@ -2,8 +2,10 @@ class CreateLogs < ActiveRecord::Migration
   def self.up
     create_table :logs do |t|
       t.column :name, :text, :null => false
+      t.column :currentfile, :text
       t.column :shasum, :string, :limit => 42, :null => false
       t.column :source, :text, :null => false
+      t.column :logdate, :datetime, :null => false
       t.column :status, :string, :null => false
     end
   end

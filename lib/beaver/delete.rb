@@ -31,6 +31,7 @@ module Beaver
       files.each do |file|
         delete_file(file)
       end
+      @files
     end
     
     # Deletes a given file
