@@ -1,13 +1,48 @@
+# Author:: Adam Jacob (<adam@hjksolutions.com>)
+# Copyright:: Copyright (c) 2007 HJK Solutions, LLC
+# License:: GNU General Public License version 2.1
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 module Beaver
+  
+  # Encapsulates a particular Log job.  Handles finding, compressing, 
+  # renaming, transferring, and deleting files.  
   class Job
     attr_reader :files
     
+    # Creates a new Beaver::Job object.  
     def initialize()  
       @variables = Hash.new
       @find = Beaver::FindFile.new
       @files = Array.new
     end
     
+    # Sets a configuration value.  Common keys are:
+    #
+    #   set :source => "unit test"
+    #   set :compress_directory => COMPRESSDIR
+    #   set :rename_directory => RENAMEDIR
+    #   set :transfer_user => ENV["LIVE_USER"]
+    #   set :transfer_host => ENV["LIVE_HOST"]
+    #   set :transfer_ssh_key  => ENV["LIVE_KEY"]
+    #   set :transfer_to => "/tmp"
+    #
+    # The job will fail if some of these values aren't set.  The :source,
+    # :compress_directory and :rename_directory values are required for any
+    # job to execute.  The :transfer_ keys can be specified when calling
+    # transfer as well, which will override these defaults.
     def set(values)
       values.each do |k, v|
         @variables[k] = v
@@ -15,16 +50,29 @@ module Beaver
       true
     end
     
+    # Get a configuration value.
     def get(key)
       @variables.has_key?(key) ? @variables[key] : nil 
     end
     
+    # Find files underneath a directory.  Requires a block, which will be
+    # passed each file.  Should call add_file(file) for any files that should
+    # be included in this job.
+    #
+    # Example:
+    # 
+    #     find("/tmp") { |f| add_file(f) if FileTest.file?(f) }
+    #
+    # Would add all the files under /tmp to this job.
     def find(dir, args=nil, &block)
       job_configured?
       @find.search(dir, args, &block)
       raise ArgumentError, "No files added in your find." unless have_files?
     end
     
+    # Add's a file to this job.  Takes a filename and an optional date.  See
+    # Beaver::FindFile::add_file for more information on how the datetime
+    # logic works.
     def add_file(file, datetime=nil)
       job_configured?
       nfile, ndatetime, shasum = @find.add_file(file, datetime)
@@ -44,6 +92,9 @@ module Beaver
       log_file
     end
     
+    # Compresses the files found by calling find and add_file.  If you pass
+    # a block, you are expected to do something that results in your files
+    # winding up in the :compress_directory.  
     def compress(args, &block)
       job_configured?
       raise ArgumentError, "You must have some files to compress; perhaps you need to run find first?" unless have_files?
@@ -51,8 +102,10 @@ module Beaver
       compress.compress(current_files(), args, &block)
       update_current_files(compress.files, "compressed")
     end
-    
-    # FIXME: What happens if you rename from find?  You'll de-facto delete.
+        
+    # Renames the files found by calling find and add_file (or compress)
+    # Be careful about calling rename without an interim compress block,
+    # because you'll rename the original file (essentially deleting it.) 
     def rename(args=nil, &block)
       job_configured?
       raise ArgumentError, "You must have some files to rename; perhaps you need to run find first?" unless have_files?
@@ -61,6 +114,10 @@ module Beaver
       update_current_files(rename.files, "renamed")
     end
     
+    # Deletes the files in this job.  Has an optional argument, :keep, which
+    # takes the number of files you want to keep on disk.  It decides which
+    # to keep by sorting them by date and time, counting backwards from the
+    # latest. (ie: the last 10 updated files for :keep => 10)
     def delete(args=nil, &block)
       job_configured?
       raise ArgumentError, "You must have some files to delete; perhaps you need to run find first?" unless have_files?
@@ -97,6 +154,16 @@ module Beaver
       end
     end
     
+    # Transfers a file, or runs a command on a remote host.  See 
+    # Beaver::Transfer for a list of possible backends.  Takes options
+    # such as:
+    #      :with    - The backend to use.
+    #      :user    - The user to log in with, if using scp or rsync
+    #      :host    - The host to transfer to
+    #      :to      - The directory on that host to put the files
+    #      :ssh_key - The ssh key to use, if scp or rsync
+    #      :mkdir   - Whether to ensure the remote directory exists,
+    #                 defaults to true.
     def transfer(args=nil, &block)
       job_configured?
       transfer = Beaver::Transfer.new
@@ -134,6 +201,8 @@ module Beaver
       end
     end
     
+    # Load's a script for this job.  It is executed in the context of this
+    # instance.  
     def load(scriptfile)
       eval(IO.read(scriptfile))
     end

@@ -7,7 +7,7 @@ set :rename_directory => RENAMEDIR
 set :transfer_user => ENV["LIVE_USER"]
 set :transfer_host => ENV["LIVE_HOST"]
 set :transfer_ssh_key  => ENV["LIVE_KEY"]
-set :transfer_to => "localhost"
+set :transfer_to => "/tmp"
 
 find(FINDDIR) do |file|
   add_file(file) if file =~ /foobar/

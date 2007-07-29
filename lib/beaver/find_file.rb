@@ -29,7 +29,11 @@ module Beaver
       @files = Array.new
     end
     
-    # Add a new file to the list of files that match.  De-dupes.
+    # Add a new file to the list of files that match.  De-dupes.  Takes an 
+    # optional Date, as parse-able by ParseDate.parsedate, which becomes the
+    # date at which we think this file was last modified.  Useful for when
+    # your file embedds the date it was created/rotated.  Without it, we
+    # will use the files mtime.
     def add_file(file,datetime=nil)
       if datetime
         res = ParseDate.parsedate(datetime)
