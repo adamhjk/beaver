@@ -181,24 +181,45 @@ class TestJob < Test::Unit::TestCase
   end
   
   def test_delete
+    create_files_to_delete()
     set_variables()
-    find_files()
+    find_files_delete()
     compress_files()
-    files = @job.files.collect { |f| f.currentfile }
+    files = @job.files.collect { |f| [ f.currentfile, f.name ] }
     @job.delete()
     files.each do |file|
-      assert(! FileTest.file?(file), "#{file} should not exist")
+      assert(! FileTest.file?(file[0]), "#{file[0]} should not exist")
+      assert(! FileTest.file?(file[1]), "#{file[1]} should not exist")
     end
   end
   
   def test_delete_keep
+    create_files_to_delete()
     set_variables()
-    find_files()
+    find_files_delete()
     compress_files()
-    files = @job.files.collect { |f| f.currentfile }
+    files = @job.files.collect { |f| [ f.currentfile, f.name ] }
     @job.delete(:keep => 2)
+    waiting = Beaver::DB::Log.find(:all, :conditions => { :status => "waiting" })
+    waiting.each do |file|
+      assert(FileTest.file?(file.name), "#{file.name} File should exist")
+      assert(FileTest.file?(file.currentfile), "#{file.currentfile} File should exist")
+      File.unlink(file.name)
+      File.unlink(file.currentfile)
+      files.delete([ file.currentfile, file.name ])
+    end
     files.each do |file|
-      assert(! FileTest.file?(file), "#{file} should not exist")
+      assert(! FileTest.file?(file[0]), "#{file[0]} should not exist")
+      assert(! FileTest.file?(file[1]), "#{file[1]} should not exist")
+    end
+  end
+  
+  def test_load
+    @job.load(BEAVERSCRIPT)
+    @job.files do |file|
+      assert(file.status == "waiting", "Status should be waiting")
+      assert(FileTest.file?(file.name), "Original file should exist")
+      assert(FileTest.file?(file.currentfile), "Current file should exist")
     end
   end
   
@@ -220,6 +241,21 @@ class TestJob < Test::Unit::TestCase
       @job.find(FINDDIR) do |file|
          @job.add_file(file) if file =~ /foobar/
        end
+    end
+    
+    def create_files_to_delete
+      [ "test_3.log", "test_2.log", "test_1.log" ].each do |name|
+        File.open(File.join(DELETEDIR, name), "w") do |f|
+          f.puts "testing testing testing"
+        end
+        sleep 1
+      end
+    end
+    
+    def find_files_delete
+      @job.find(DELETEDIR) do |file|
+         @job.add_file(file) if FileTest.file?(file)
+      end
     end
     
     def compress_files

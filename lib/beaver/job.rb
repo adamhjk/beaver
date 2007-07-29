@@ -75,9 +75,25 @@ module Beaver
           end
         end
       elsif args
-        
+        raise ArgumentError, "You must have :keep as an argument" unless args[:keep]
+        logs = Beaver::DB::Log.find(:all, :order => "logdate DESC")
+        count = 1
+        logs.each do |log|
+          if count <= args[:keep]
+            puts "Saving #{log.name} and #{log.currentfile}"
+            log.status = "waiting"
+            log.save
+          else
+            puts "Deleting #{log.name} and #{log.currentfile}"
+            delete_log(log)
+          end
+          count += 1
+        end
       else
-        
+        logs = Beaver::DB::Log.find(:all)
+        logs.each do |log|
+          delete_log(log)
+        end
       end
     end
     
@@ -105,6 +121,8 @@ module Beaver
           transfer.ssh(args[:user], args[:host], args[:cmd], args[:ssh_key])
         else
           unless args[:user] && args[:host] && args[:to] && args[:ssh_key] && args[:mkdir] && args[:with]
+            missing = Array.new
+            args[:user]
             raise ArgumentError, "You must specify :user, :host, :to, and :ssh_key, or have them set with 'set :transfer_foo => bar' globally."
           end
           transfer.ssh(args[:user], args[:host], "mkdir -p #{args[:to]}", args[:ssh_key]) if args[:mkdir]
@@ -116,7 +134,19 @@ module Beaver
       end
     end
     
+    def load(scriptfile)
+      eval(IO.read(scriptfile))
+    end
+    
     private
+    
+      def delete_log(log)
+        deleteobj = Beaver::Delete.new
+        deleteobj.delete_file(log.name)
+        deleteobj.delete_file(log.currentfile)
+        log.destroy
+        true
+      end
     
       def update_status(status)
         @files.each do |file|

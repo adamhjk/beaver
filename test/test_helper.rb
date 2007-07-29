@@ -1,17 +1,20 @@
 require 'test/unit'
 require File.dirname(__FILE__) + '/../lib/beaver'
 
-DATADIR = File.expand_path(File.join(File.dirname(__FILE__), 'data'))
-FINDDIR = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'find'))
-FINDFILE = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'find', 'foobar_production.log'))
-DBFILE = File.expand_path(File.join(File.dirname(__FILE__), 'db', 'testing.sqlite'))
-COMPRESSDIR = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'compress'))
-RENAMEDIR = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'rename'))
-TRANSFERDIR = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'transfer'))
+DATADIR       = File.expand_path(File.join(File.dirname(__FILE__), 'data'))
+FINDDIR       = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'find'))
+FINDFILE      = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'find', 'foobar_production.log'))
+DBFILE        = File.expand_path(File.join(File.dirname(__FILE__), 'db', 'testing.sqlite'))
+COMPRESSDIR   = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'compress'))
+RENAMEDIR     = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'rename'))
+TRANSFERDIR   = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'transfer'))
 TRANSFER_FILE = File.join(TRANSFERDIR, "transfer_file")
 TO_FILE       = File.join(TRANSFERDIR, "new_transfer_file")
 LANDING       = File.join(TRANSFERDIR, "landing")
 LANDING_FILE  = File.join(LANDING, "transfer_file")
+DELETEDIR     = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'delete'))
+BEAVERSCRIPT  = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'test.beaver'))
+
 
 class TestHelp
   def self.establish_ar
