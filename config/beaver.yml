@@ -1,0 +1,4 @@
+
+db:
+  adapter: sqlite3
+  database: db/beaver.sqlite
