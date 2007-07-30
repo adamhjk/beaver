@@ -5,6 +5,14 @@ README.txt
 Rakefile
 
 lib/beaver.rb
+lib/beaver/compress.rb
+lib/beaver/config.rb
+lib/beaver/db/log.rb
+lib/beaver/delete.rb
+lib/beaver/find_file.rb
+lib/beaver/job.rb
+lib/beaver/rename.rb
+lib/beaver/transfer.rb
 lib/beaver/version.rb
 setup.rb
 test/test_helper.rb
