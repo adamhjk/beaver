@@ -1,3 +1,20 @@
+# Author:: Adam Jacob (<adam@hjksolutions.com>)
+# Copyright:: Copyright (c) 2007 HJK Solutions, LLC
+# License:: GNU General Public License version 2.1
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2.1
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 require File.dirname(__FILE__) + '/test_helper.rb'
 
 class TestJob < Test::Unit::TestCase
@@ -16,15 +33,15 @@ class TestJob < Test::Unit::TestCase
   def test_add_file
     failed = false
     begin
-      @job.add_file(FINDFILE)
+      @job.add_file(TestHelp::FINDFILE)
     rescue ArgumentError
       failed = true
     end
     set_variables()
     assert(failed, "add_file fails if you haven't set the source.")
-    log_obj = @job.add_file(FINDFILE)
+    log_obj = @job.add_file(TestHelp::FINDFILE)
     assert(log_obj.kind_of?(ActiveRecord::Base), "Returns active record object")
-    assert(log_obj.name == FINDFILE, "File has been added")
+    assert(log_obj.name == TestHelp::FINDFILE, "File has been added")
   end
   
   def test_find
@@ -37,7 +54,7 @@ class TestJob < Test::Unit::TestCase
     set_variables()
     failed = false
     begin
-      @job.find(FINDDIR) { |file| }
+      @job.find(TestHelp::FINDDIR) { |file| }
     rescue ArgumentError
       failed = true
     end
@@ -141,15 +158,15 @@ class TestJob < Test::Unit::TestCase
       find_files()
       @job.set(:transfer_user => ENV["LIVE_USER"])
       @job.set(:transfer_host => ENV["LIVE_HOST"])
-      @job.set(:transfer_to   => LANDING)
+      @job.set(:transfer_to   => TestHelp::TestHelp::LANDING)
       @job.set(:transfer_ssh_key  => ENV["LIVE_KEY"])
       result = @job.transfer(:with => :scp)
       assert(result, "Transfer successful")
-      assert(FileTest.directory?(LANDING), "#{LANDING} should exist.")
+      assert(FileTest.directory?(TestHelp::TestHelp::LANDING), "#{TestHelp::TestHelp::LANDING} should exist.")
       @job.files.each do |file|
         filename = File.basename(file.name)
-        assert(FileTest.file?(File.join(LANDING, filename)), "Files have been transferred")
-        File.unlink(File.join(LANDING, filename)) if FileTest.file?(File.join(LANDING, filename))
+        assert(FileTest.file?(File.join(TestHelp::TestHelp::LANDING, filename)), "Files have been transferred")
+        File.unlink(File.join(TestHelp::TestHelp::LANDING, filename)) if FileTest.file?(File.join(TestHelp::TestHelp::LANDING, filename))
       end
     end
   end
@@ -158,13 +175,13 @@ class TestJob < Test::Unit::TestCase
     TestHelp.if_live_tests do
       set_variables()
       find_files()
-      result = @job.transfer(:with => :scp, :user => ENV["LIVE_USER"], :host => ENV["LIVE_HOST"], :to => LANDING, :ssh_key => ENV["LIVE_KEY"])
+      result = @job.transfer(:with => :scp, :user => ENV["LIVE_USER"], :host => ENV["LIVE_HOST"], :to => TestHelp::LANDING, :ssh_key => ENV["LIVE_KEY"])
       assert(result, "Transfer successful")
-      assert(FileTest.directory?(LANDING), "#{LANDING} should exist.")
+      assert(FileTest.directory?(TestHelp::LANDING), "#{TestHelp::LANDING} should exist.")
       @job.files.each do |file|
         filename = File.basename(file.name)
-        assert(FileTest.file?(File.join(LANDING, filename)), "Files have been transferred")
-        File.unlink(File.join(LANDING, filename)) if FileTest.file?(File.join(LANDING, filename))
+        assert(FileTest.file?(File.join(TestHelp::LANDING, filename)), "Files have been transferred")
+        File.unlink(File.join(TestHelp::LANDING, filename)) if FileTest.file?(File.join(TestHelp::LANDING, filename))
       end
     end
   end
@@ -215,11 +232,13 @@ class TestJob < Test::Unit::TestCase
   end
   
   def test_load
-    @job.load(BEAVERSCRIPT)
-    @job.files do |file|
-      assert(file.status == "waiting", "Status should be waiting")
-      assert(FileTest.file?(file.name), "Original file should exist")
-      assert(FileTest.file?(file.currentfile), "Current file should exist")
+    TestHelp.if_live_tests do 
+      @job.load(TestHelp::BEAVERSCRIPT)
+      @job.files do |file|
+        assert(file.status == "waiting", "Status should be waiting")
+        assert(FileTest.file?(file.name), "Original file should exist")
+        assert(FileTest.file?(file.currentfile), "Current file should exist")
+      end
     end
   end
   
@@ -233,19 +252,19 @@ class TestJob < Test::Unit::TestCase
     
     def set_variables
       @job.set(:source => "bmonster")
-      @job.set(:compress_directory => COMPRESSDIR)
-      @job.set(:rename_directory => RENAMEDIR)
+      @job.set(:compress_directory => TestHelp::COMPRESSDIR)
+      @job.set(:rename_directory => TestHelp::RENAMEDIR)
     end
     
     def find_files
-      @job.find(FINDDIR) do |file|
+      @job.find(TestHelp::FINDDIR) do |file|
          @job.add_file(file) if file =~ /foobar/
        end
     end
     
     def create_files_to_delete
       [ "test_3.log", "test_2.log", "test_1.log" ].each do |name|
-        File.open(File.join(DELETEDIR, name), "w") do |f|
+        File.open(File.join(TestHelp::DELETEDIR, name), "w") do |f|
           f.puts "testing testing testing"
         end
         sleep 1
@@ -253,7 +272,7 @@ class TestJob < Test::Unit::TestCase
     end
     
     def find_files_delete
-      @job.find(DELETEDIR) do |file|
+      @job.find(TestHelp::DELETEDIR) do |file|
          @job.add_file(file) if FileTest.file?(file)
       end
     end

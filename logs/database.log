@@ -12295,3 +12295,989 @@ Migrating to CreateLogs (1)
  WHERE "id" = 1
 [0m
   [4;35;1mBeaver::DB::Log Load (0.002771)[0m   [0mSELECT * FROM logs WHERE (logs."status" = 'waiting') [0m
+  [4;36;1mSQL (0.004621)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004773)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001192)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005316)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003998)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000804)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001352)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:17', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000778)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001316)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:18', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001707)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001281)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:19', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003064)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002930)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:18', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002535)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:19', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Load (0.005931)[0m   [0mSELECT * FROM logs ORDER BY logdate DESC[0m
+  [4;36;1mBeaver::DB::Log Update (0.002757)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-24 23:59:19', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0  [4;36;1mSQL (0.012230)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006544)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001760)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.006302)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.006042)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000829)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001338)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'unit test')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001036)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.034619)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'unit test')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000806)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001371)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'unit test')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004145)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002726)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002671)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.012502)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Us  [4;36;1mSQL (0.005142)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007080)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002490)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.021896)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004169)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000828)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.004173)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000860)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001806)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001260)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001513)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.005230)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002787)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.005050)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.003538)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.004397)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006509)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001243)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004835)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004540)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001229)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002000)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001052)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.007149)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001356)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001710)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003110)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.005395)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.003248)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.001938)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.004771)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004038)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001912)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.022624)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004848)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001170)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001496)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000888)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001714)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.002930)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001905)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003655)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002227)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002454)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002515)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.056490)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003888)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001303)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004844)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003408)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001850)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.005269)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000793)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001710)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000747)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001339)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003000)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.005578)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002289)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002749)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.005813)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004123)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001935)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007532)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.011231)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.021427)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001413)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001057)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001720)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000815)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001482)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005735)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003703)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001262)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.010415)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004214)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007184)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004546)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001184)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004549)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.006958)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000944)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001415)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.018644)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003603)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002155)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003860)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003131)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.008666)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003253)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001240)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004448)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003671)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.003783)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003313)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001595)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.006339)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003875)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002374)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.010282)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.005574)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002651)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003857)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.014130)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003846)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002220)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002881)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.3.gz_dogma' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.003232)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.2.gz_dogma' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002286)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.gz_dogma' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002310)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002853)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+ers/adam/src/sandbox/beaver/test/data/rename/latte_foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002746)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/latte_foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002637)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'unit test', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/latte_foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.042336)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007760)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001573)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.022058)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007194)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007713)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007728)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001602)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.008502)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007387)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000868)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001731)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000836)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001351)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000886)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002085)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.004926)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004116)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001576)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004596)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004678)[0m   [0mUPDATE schema_info SET version = 1[0m
+m
+  [4;35;1mBeaver::DB::Log Update (0.024166)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-24 23:59:18', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001515)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;35;1mBeaver::DB::Log Load (0.001931)[0m   [0mSELECT * FROM logs WHERE (logs."status" = 'waiting') [0m
+  [4;35;1mSQL (0.004724)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004218)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001226)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.004305)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.005742)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mBeaver::DB::Log Load (0.000880)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001803)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:13', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001056)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001298)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:14', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.007219)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001594)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-24 23:59:15', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Update (0.003474)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:13', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002632)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:14', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002848)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-24 23:59:15', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;36;1mBeaver::DB::Log Load (0.002316)[0m   [0;1mSELECT * FROM logs [0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001227)[0m   [0m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001211)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 2
+[0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001250)[0m   [0m DELETE FROM logs
+ WHERE "id" = 3
+[0m
+  [4;35;1mSQL (0.020672)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.003889)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001285)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.050631)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.004663)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.018020)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.005056)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001125)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.016347)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.008892)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001019)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001432)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000940)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001449)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000864)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001702)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.011114)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002871)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002574)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.009825)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004664)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001221)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.020779)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007784)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000801)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001592)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:44', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001009)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001696)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:45', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001366)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001689)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:46', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003321)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:44', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002769)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:45', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.003941)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:46', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Load (0.005604)[0m   [0mSELECT * FROM logs ORDER BY logdate DESC[0m
+  [4;36;1mBeaver::DB::Log Update (0.002925)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:00:46', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0  [4;36;1mSQL (0.004789)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.005346)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001153)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.014013)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.016328)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.007378)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001641)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001540)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001290)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000994)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001681)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003410)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.008747)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.006521)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002576)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.012242)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.009229)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004373)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.035963)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003626)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001047)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001778)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001076)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001735)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000774)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001429)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003372)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002575)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002920)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.003346)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.006436)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003913)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001335)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.021646)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002985)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001093)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001409)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.018023)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.007065)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.003450)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001670)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003356)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.005216)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002311)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002232)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.004761)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.015169)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001702)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007154)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003254)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000897)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.005867)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000838)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002343)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000854)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001369)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004696)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.004724)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002924)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002686)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.006867)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.014186)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001158)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.006713)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004413)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000802)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.007612)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005126)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006185)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004760)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003936)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.011499)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000785)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.004486)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000791)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001428)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000749)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.003255)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.016316)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007513)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001201)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003963)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003468)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.014730)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002990)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001443)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004408)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003704)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.003731)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.056866)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001244)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004244)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004803)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.004262)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002628)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001791)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.010040)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003626)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.004214)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002146)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.005529)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004530)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001786)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.033739)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003192)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.003665)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002226)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.3.gz_dogma' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.005314)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.2.gz_dogma' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002866)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.gz_dogma' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.003093)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.004743)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.007680)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007248)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003841)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007486)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.009434)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.011923)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006374)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001289)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004950)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.005192)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007352)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.008006)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004060)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.017904)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.052099)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.001207)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001501)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000878)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001602)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001157)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002109)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005003)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.005366)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001292)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.011492)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004539)[0m   [0mUPDATE schema_info SET version = 1[0m
+m
+  [4;35;1mBeaver::DB::Log Update (0.024669)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:00:45', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001121)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;35;1mBeaver::DB::Log Load (0.004256)[0m   [0mSELECT * FROM logs WHERE (logs."status" = 'waiting') [0m
+  [4;35;1mSQL (0.005258)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.008089)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.017007)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.007950)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.024861)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mBeaver::DB::Log Load (0.000919)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001578)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:40', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.000806)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001513)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:41', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001431)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001752)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:00:42', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Update (0.006259)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:40', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.003237)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:41', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.004517)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:00:42', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;36;1mBeaver::DB::Log Load (0.003338)[0m   [0;1mSELECT * FROM logs [0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001210)[0m   [0m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001203)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 2
+[0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001392)[0m   [0m DELETE FROM logs
+ WHERE "id" = 3
+[0m
+  [4;35;1mSQL (0.005051)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004415)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001920)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.004802)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.004705)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007496)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007600)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001125)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.018028)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.017134)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000791)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001467)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001028)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001428)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000774)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002365)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.066131)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.005411)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002619)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.004796)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.008101)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001160)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005005)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004473)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001309)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:14:55', 'fake', 'transferring', NULL, '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;35;1mBeaver::DB::Log Load (0.002117)[0m   [0mSELECT * FROM logs WHERE (logs."name" = 'fake') LIMIT 1[0m
+  [4;36;1mSQL (0.005526)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007383)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001150)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004826)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004499)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000958)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001681)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005310)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004283)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001188)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.018330)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007169)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.002503)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001497)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:15:00', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000931)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001459)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:15:01', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.005033)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001367)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:15:02', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003098)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:15:00', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.021948)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:15:01', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002699)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:15:02', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Load (0.004645)[0m   [0mSELECT * FROM logs ORDER BY logdate DESC[0m
+  [4;36;1mBeaver::DB::Log Update (0.018960)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:15:02', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0  [4;36;1mSQL (0.004840)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.011741)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.012831)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004926)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004201)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000868)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001462)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000854)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001320)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000798)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001643)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.002853)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.009106)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002605)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002950)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.015901)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.008397)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.013175)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.013105)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003969)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000811)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001367)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001084)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001284)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000958)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001363)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003004)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.003163)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002982)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.003010)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.007140)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003159)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001262)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004734)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003757)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000874)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001399)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001241)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001315)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001104)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002021)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004424)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002165)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.006737)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002588)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.004400)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003087)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001261)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.026022)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003114)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000870)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001443)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001053)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001359)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001282)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001330)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004021)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002593)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.023813)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002081)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.026609)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003999)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001153)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004659)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004729)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000810)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002345)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001032)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.002052)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000897)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001551)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003160)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002793)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.005086)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.017891)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003072)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001505)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.027980)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003378)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000881)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.003309)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001132)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.017444)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000793)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001407)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005740)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003193)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001303)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004077)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003616)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.024127)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003540)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001898)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004055)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003173)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.003685)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003352)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.010268)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.018017)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002955)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.004539)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003456)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001215)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003794)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003291)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002675)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.014561)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.004260)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003155)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003807)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003740)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.017876)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.006759)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002593)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.3.gz_dogma' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.003725)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.2.gz_dogma' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002610)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.gz_dogma' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002989)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.020779)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.012329)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.008102)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001574)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005167)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.013395)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.007507)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.018510)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001330)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.011846)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007079)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.015995)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.013523)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001603)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004638)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004063)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.024943)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.005204)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000779)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001327)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000812)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001933)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.004741)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.009749)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001270)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.014422)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.007549)[0m   [0mUPDATE schema_info SET version = 1[0m
+m
+  [4;35;1mBeaver::DB::Log Update (0.002750)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:15:01', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001201)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;35;1mBeaver::DB::Log Load (0.003047)[0m   [0mSELECT * FROM logs WHERE (logs."status" = 'waiting') [0m
+  [4;35;1mSQL (0.004855)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.005070)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001173)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.012384)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.007609)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mBeaver::DB::Log Load (0.000808)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.221520)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:14:56', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001169)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001656)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:14:57', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.000852)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001383)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:14:58', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Update (0.002925)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:14:56', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002626)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:14:57', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002902)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:14:58', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;36;1mBeaver::DB::Log Load (0.002409)[0m   [0;1mSELECT * FROM logs [0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001233)[0m   [0m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001225)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 2
+[0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001527)[0m   [0m DELETE FROM logs
+ WHERE "id" = 3
+[0m
+  [4;35;1mSQL (0.033023)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.007421)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001742)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.009506)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.025146)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.013942)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004136)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001150)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004464)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.008658)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.001476)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:26', 'fake', 'transferring', NULL, '4e98e2e06bd6006f27fafe30af5ec13a59ad470e', 'unit test')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001974)[0m   [0mSELECT * FROM logs WHERE (logs."name" = 'fake') LIMIT 1[0m
+  [4;36;1mSQL (0.009496)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003776)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001155)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.017646)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.023207)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000857)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001260)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005205)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004271)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.008756)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.018954)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.008732)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000874)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001355)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:31', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000918)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001307)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:32', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001216)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;35;1mSQL (0.001262)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:33', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004436)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:31', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.003309)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:32', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.003160)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:33', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Load (0.005730)[0m   [0mSELECT * FROM logs ORDER BY logdate DESC[0m
+  [4;36;1mBeaver::DB::Log Update (0.002694)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:23:33', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0  [4;36;1mSQL (0.005470)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004094)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001212)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005219)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.015865)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000907)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001606)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000795)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001283)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000910)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001263)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.002776)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.003343)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.009100)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002911)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.008296)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.009981)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.012437)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.007832)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.008499)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000885)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001633)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001327)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.012695)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000995)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001251)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003189)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002288)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.003142)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.003832)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.003644)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003048)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001632)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005755)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003433)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.011483)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001378)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000739)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001388)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.011158)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001577)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003324)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.008135)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.002633)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.014331)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.003573)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003304)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001352)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005088)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.005543)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000798)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001420)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000781)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.011812)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000881)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001341)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.004830)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.002522)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.017670)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;35;1mBeaver::DB::Log Update (0.002570)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/ada  [4;36;1mSQL (0.005353)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003999)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001153)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004843)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003820)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000789)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001795)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000929)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001393)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000816)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001516)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Update (0.003086)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:17', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;35;1mBeaver::DB::Log Update (0.003097)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Update (0.003343)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'compressed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.004154)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002933)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.012109)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.006171)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.019924)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000951)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001414)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000899)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.020458)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.001011)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001346)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.005299)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004506)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001690)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003927)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003300)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.005636)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002631)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001854)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004002)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.002897)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.003761)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002853)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001400)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004051)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003174)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.006340)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.021779)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001373)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.003694)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003134)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002119)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002376)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.004932)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004114)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001277)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.005280)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.005058)[0m   [0mUPDATE schema_info SET version = 1[0m
+m/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002071)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002129)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/monkey_foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.3.gz_dogma' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002422)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.2.gz_dogma' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002187)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/clerks_foobar_production.log.gz_dogma' WHERE "id" = 3[0m
+m/src/sandbox/beaver/test/data/rename/foobar_production.log.3.gz_monkey' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002707)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-24 16:54:51', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.2.gz_monkey' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.021391)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', "source" = 'bmonster', "shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c', "status" = 'renamed', "logdate" = '2007-07-29 14:35:10', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/rename/foobar_production.log.gz_monkey' WHERE "id" = 3[0m
+  [4;36;1mSQL (0.005099)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.004514)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001326)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004890)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.005110)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.023911)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007357)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001223)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004468)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.003854)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.005247)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003507)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001235)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.006959)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.004158)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mBeaver::DB::Log Load (0.000810)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.011559)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:17', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.3', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000772)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001290)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-24 16:54:51', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log.2', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mBeaver::DB::Log Load (0.000831)[0m   [0;1mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log' AND logs."shasum" = '1e7720a3460b8a84ac4ba27880d64526a3872f1c') LIMIT 1[0m
+  [4;35;1mSQL (0.001775)[0m   [0mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-07-29 14:35:10', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/find/foobar_production.log', '1e7720a3460b8a84ac4ba27880d64526a3872f1c', 'bmonster')[0m
+  [4;36;1mSQL (0.007735)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.006753)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001252)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;36;1mSQL (0.004561)[0m   [0;1mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.021808)[0m   [0mUPDATE schema_info SET version = 1[0m
+m
+  [4;35;1mBeaver::DB::Log Update (0.014733)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'waiting', "logdate" = '2007-08-25 00:23:32', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001857)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;35;1mBeaver::DB::Log Load (0.003741)[0m   [0mSELECT * FROM logs WHERE (logs."status" = 'waiting') [0m
+  [4;35;1mSQL (0.004659)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004016)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001549)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.004628)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.019194)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mBeaver::DB::Log Load (0.001502)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001350)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:27', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001403)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001605)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:28', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Load (0.001029)[0m   [0mSELECT * FROM logs WHERE (logs."name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log' AND logs."shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5') LIMIT 1[0m
+  [4;36;1mSQL (0.001642)[0m   [0;1mINSERT INTO logs ("logdate", "name", "status", "currentfile", "shasum", "source") VALUES('2007-08-25 00:23:29', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'found', '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', 'f00bf06ec9df73964c0cf09667cf970d33d515c5', 'bmonster')[0m
+  [4;35;1mBeaver::DB::Log Update (0.004911)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_3.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:27', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_3.log.gz' WHERE "id" = 1[0m
+  [4;36;1mBeaver::DB::Log Update (0.002952)[0m   [0;1mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_2.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:28', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_2.log.gz' WHERE "id" = 2[0m
+  [4;35;1mBeaver::DB::Log Update (0.002889)[0m   [0mUPDATE logs SET "name" = '/Users/adam/src/sandbox/beaver/test/data/delete/test_1.log', "source" = 'bmonster', "shasum" = 'f00bf06ec9df73964c0cf09667cf970d33d515c5', "status" = 'compressed', "logdate" = '2007-08-25 00:23:29', "currentfile" = '/Users/adam/src/sandbox/beaver/test/data/compress/test_1.log.gz' WHERE "id" = 3[0m
+  [4;36;1mBeaver::DB::Log Load (0.002688)[0m   [0;1mSELECT * FROM logs [0m
+  [4;35;1mBeaver::DB::Log Destroy (0.001292)[0m   [0m DELETE FROM logs
+ WHERE "id" = 1
+[0m
+  [4;36;1mBeaver::DB::Log Destroy (0.001273)[0m   [0;1m DELETE FROM logs
+ WHERE "id" = 2
+[0m
+  [4;35;1mBeaver::DB::Log Destroy (0.003635)[0m   [0m DELETE FROM logs
+ WHERE "id" = 3
+[0m
+  [4;35;1mSQL (0.008670)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004389)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001567)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLogs (1)
+  [4;35;1mSQL (0.004650)[0m   [0mCREATE TABLE logs ("id" INTEGER PRIMARY KEY NOT NULL, "name" text NOT NULL, "currentfile" text DEFAULT NULL, "shasum" varchar(42) NOT NULL, "source" text NOT NULL, "logdate" datetime NOT NULL, "status" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.006194)[0m   [0;1mUPDATE schema_info SET version = 1[0m
