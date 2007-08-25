@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+#
+# Beaver fetches logs.
+#
+
+begin
+  require 'rubygems'
+  require 'beaver'  
+rescue LoadError
+  begin
+    require 'beaver'
+  rescue LoadError
+    require File.dirname(__FILE__) + '/../lib/beaver'
+  end
+end
+
+require 'yaml'
+require 'optparse'
+
+config_file = "/etc/beaver/beaver.yml"
+job_file    = nil
+dry_run     = nil
+debug       = false
+
+opts = OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} (options) -j JOBFILE"
+  opts.on("-j JOBFILE", "--job JOBFILE", "A beaver job file.") do |j|
+    job_file = File.expand_path(j)
+  end
+  opts.on("-c CONFIG", "--config CONFIGFILE", "A beaver.yml file.") do |c|
+    config_file = File.expand_path(c)
+  end
+  opts.on("-n", "--no-action", "Don't do anything, just print what you would do.") do |n|
+    dry_run = true
+    debug   = true
+  end
+  opts.on("-d", "Show debug output.") do |d|
+    debug = true
+  end
+  opts.on_tail("-h", "--help", "Show this message.") do
+    puts opts
+    exit
+  end
+end
+opts.parse!(ARGV)
+
+unless job_file
+  puts "You must specify a job file!"
+  puts opts
+  exit
+end
+
+raise "Job file #{job_file} does not exist!" unless FileTest.file?(job_file)
+
+config = Beaver::Config.new(config_file)
+config.log_level = "DEBUG" if debug
+config.make_missing_dirs
+config.setup_database
+unless FileTest.file?(File.expand_path(config.db["database"]))
+  config.migrate_database(config.db["database"]) 
+end
+job = Beaver::Job.new(config)
+job.load(job_file)
+exit 0

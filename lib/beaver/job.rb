@@ -15,6 +15,8 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+require 'logger'
+
 module Beaver
   
   # Encapsulates a particular Log job.  Handles finding, compressing, 
@@ -23,10 +25,14 @@ module Beaver
     attr_reader :files
     
     # Creates a new Beaver::Job object.  
-    def initialize()  
+    def initialize(config=nil)  
       @variables = Hash.new
       @find = Beaver::FindFile.new
       @files = Array.new
+      @logger = Logger.new(STDOUT)
+      @logger.sev_threshold = Logger::ERROR
+      set_from_config(config) if config 
+      @logger.debug("Initialized Job")
     end
     
     # Sets a configuration value.  Common keys are:
@@ -45,6 +51,7 @@ module Beaver
     # transfer as well, which will override these defaults.
     def set(values)
       values.each do |k, v|
+        @logger.debug("Set value #{k} to #{v}")
         @variables[k] = v
       end
       true
@@ -52,6 +59,7 @@ module Beaver
     
     # Get a configuration value.
     def get(key)
+      @logger.debug("Getting value for #{key}")
       @variables.has_key?(key) ? @variables[key] : nil 
     end
     
@@ -66,6 +74,7 @@ module Beaver
     # Would add all the files under /tmp to this job.
     def find(dir, args=nil, &block)
       job_configured?
+      @logger.debug("Finding files")
       @find.search(dir, args, &block)
       raise ArgumentError, "No files added in your find." unless have_files?
     end
@@ -76,6 +85,7 @@ module Beaver
     def add_file(file, datetime=nil)
       job_configured?
       nfile, ndatetime, shasum = @find.add_file(file, datetime)
+      @logger.debug("Added file #{nfile} at #{ndatetime} with shasum #{shasum}")
       log_file = Beaver::DB::Log.find(:first, :conditions => { :name => nfile, :shasum => shasum })
       unless log_file
         log_file = Beaver::DB::Log.new(
@@ -97,6 +107,7 @@ module Beaver
     # winding up in the :compress_directory.  
     def compress(args, &block)
       job_configured?
+      @logger.debug("Compressing files")
       raise ArgumentError, "You must have some files to compress; perhaps you need to run find first?" unless have_files?
       compress = Beaver::Compress.new(get(:compress_directory))
       compress.compress(current_files(), args, &block)
@@ -108,6 +119,7 @@ module Beaver
     # because you'll rename the original file (essentially deleting it.) 
     def rename(args=nil, &block)
       job_configured?
+      @logger.debug("Renaming files")
       raise ArgumentError, "You must have some files to rename; perhaps you need to run find first?" unless have_files?
       rename = Beaver::Rename.new(get(:rename_directory))
       rename.rename(current_files(), args, &block)
@@ -120,6 +132,7 @@ module Beaver
     # latest. (ie: the last 10 updated files for :keep => 10)
     def delete(args=nil, &block)
       job_configured?
+      @logger.debug("Deleting files")
       raise ArgumentError, "You must have some files to delete; perhaps you need to run find first?" unless have_files?
       if block
         @files.each do |file|
@@ -166,6 +179,7 @@ module Beaver
     #                 defaults to true.
     def transfer(args=nil, &block)
       job_configured?
+      @logger.debug("Transferring files")
       transfer = Beaver::Transfer.new
       raise ArgumentError, "You must have some files to transfer; perhaps you need to run find first?" unless have_files?
       if block
@@ -208,6 +222,30 @@ module Beaver
     end
     
     private
+      
+      def set_from_config(config)
+        set(:compress_directory => config.compress_directory)
+        set(:rename_directory => config.rename_directory)
+        set(:transfer_user => config.transfer_user)
+        set(:transfer_host => config.transfer_host)
+        set(:transfer_ssh_key => config.transfer_ssh_key)
+        if config.log_level
+          case config.log_level
+          when "DEBUG"
+            @logger.sev_threshold = Logger::DEBUG
+          when "INFO"
+            @logger.sev_threshold = Logger::INFO
+          when "WARN"
+            @logger.sev_threshold = Logger::WARN
+          when "ERROR"
+            @logger.sev_threshold = Logger::ERROR
+          when "FATAL"
+            @logger.sev_threshold = Logger::FATAL
+          when "UNKNOWN"
+            @logger.sev_threshold = Logger::UNKNOWN
+          end
+        end
+      end
     
       def delete_log(log)
         deleteobj = Beaver::Delete.new

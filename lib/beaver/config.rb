@@ -15,28 +15,83 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+require 'yaml'
+require 'active_record'
+
 module Beaver
   
+  # Deletes files
   class Config    
-    attr_accessor :files
+    attr_accessor :db, :compress_directory, :rename_directory, 
+                  :transfer_user, :transfer_host, :transfer_ssh_key, :log_level
+    
+   #compress_directory: COMPRESSDIR
+   #rename_directory: RENAMEDIR
+   #transfer_user: ENV["LIVE_USER"]
+   #transfer_host: host
+   #transfer_ssh_key: sshkey
+   #db:
+   #  adapter: sqlite3
+   #  database: db/beaver.sqlite
    
-    # Creates a new Beaver::Delete object.
-    def initialize()
-      @files = Array.new
+    # Creates a new Beaver::Config object.
+    def initialize(config_file=nil)
+      @compress_directory = "/var/lib/beaver/compress"
+      @rename_directory   = "/var/lib/beaver/rename"
+      @db = {
+        "adapter" => 'sqlite3',
+        "database" => '/var/lib/beaver/beaver.db'
+      }
+      @transfer_user = nil
+      @transfer_host = nil
+      @transfer_ssh_key = nil
+      @log_level = "ERROR"
+      load(config_file) if config_file
     end
     
-    # Deletes a list of files
-    def delete(files)
-      files.each do |file|
-        delete_file(file)
+    def load(config_file)
+      full_path = File.expand_path(config_file)
+      if ! FileTest.file?(full_path)
+        raise "Cannot find #{config_file}!" 
       end
-      @files
+      config = YAML.load_file(full_path)
+      raise "Config must evaluate to a hash!" unless config.kind_of?(Hash)
+      @compress_directory = config["compress_directory"] if config.has_key?("compress_directory") 
+      @rename_directory = config["rename_directory"] if config.has_key?("rename_directory")
+      @db = config["db"] if config.has_key?("db")
+      @transfer_user = config["transfer_user"] if config.has_key?("transfer_user")
+      @transfer_host = config["transfer_host"] if config.has_key?("transfer_host")
+      @transfer_ssh_key = config["transfer_ssh_key"] if config.has_key?("transfer_ssh_key")
     end
     
-    # Deletes a given file
-    def delete_file(file)
-      File.unlink(file) if FileTest.file?(file)
+    def make_missing_dirs
+      mkdir(File.dirname(@db["database"]))
+      mkdir(@compress_directory)
+      mkdir(@rename_directory)
     end
     
+    def setup_database()
+      ActiveRecord::Base.establish_connection(@db) 
+      ActiveRecord::Base.logger = Logger.new(STDOUT)
+      ActiveRecord::Base.logger.sev_threshold = Logger::FATAL  
+    end
+    
+    def migrate_database(migrations_path)
+      ActiveRecord::Migration.verbose = false
+      ActiveRecord::Migrator.migrate(
+        File.join(migrations_path),
+        nil  
+      )
+    end
+    
+    private
+      
+      def mkdir(dir)
+        to_make = File.expand_path(dir)
+        unless system("mkdir -p #{to_make}")
+          raise "Cannot create #{to_make}: #{$?}"
+        end
+      end
+      
   end
 end

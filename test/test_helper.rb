@@ -14,7 +14,7 @@ LANDING       = File.join(TRANSFERDIR, "landing")
 LANDING_FILE  = File.join(LANDING, "transfer_file")
 DELETEDIR     = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'delete'))
 BEAVERSCRIPT  = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'test.beaver'))
-
+CONFIGFILE    = File.expand_path(File.join(File.dirname(__FILE__), 'data', 'beaver.yml'))
 
 class TestHelp
   def self.establish_ar

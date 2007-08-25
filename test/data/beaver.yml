@@ -1,8 +1,8 @@
-compress_directory: COMPRESSDIR
-rename_directory: RENAMEDIR
-transfer_user: ENV["LIVE_USER"]
-transfer_host: host
-transfer_ssh_key: sshkey
+compress_directory: '/tmp/compress'
+rename_directory: '/tmp/rename'
+transfer_user: adam
+transfer_host: localhost
+transfer_ssh_key: ssh_key.id
 db:
   adapter: sqlite3
-  database: db/beaver.sqlite
+  database: /tmp/beaver.sqlite
