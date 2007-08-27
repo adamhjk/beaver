@@ -76,7 +76,8 @@ module Beaver
       ActiveRecord::Base.logger.sev_threshold = Logger::FATAL  
     end
     
-    def migrate_database(migrations_path)
+    def migrate_database(migrations_path=nil)
+      migrations_path = find_migrations unless migrations_path
       ActiveRecord::Migration.verbose = false
       ActiveRecord::Migrator.migrate(
         File.join(migrations_path),
@@ -91,6 +92,19 @@ module Beaver
         unless system("mkdir -p #{to_make}")
           raise "Cannot create #{to_make}: #{$?}"
         end
+      end
+      
+      def find_migrations
+        install_dir = `gem env | grep 'INSTALLATION DIRECTORY'`
+        if install_dir =~ /- INSTALLATION DIRECTORY: (.+)/
+          gem_dir = $1
+          gem_dir.chomp!
+          beaver_dir = File.join(gem_dir, 'beaver-' + Beaver::VERSION::STRING, 'db', 'migrate')
+          return beaver_dir if FileTest.directory?(beaver_dir)
+        end
+        beaver_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'db', 'migrate'))
+        return beaver_dir if FileTest.directory?(beaver_dir)
+        raise "I cannot find the migrations!"
       end
       
   end

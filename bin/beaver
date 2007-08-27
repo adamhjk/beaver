@@ -74,7 +74,7 @@ config.log_level = "DEBUG" if debug
 config.make_missing_dirs
 config.setup_database
 unless FileTest.file?(File.expand_path(config.db["database"]))
-  config.migrate_database(config.db["database"]) 
+  config.migrate_database() 
 end
 job = Beaver::Job.new(config)
 job.load(job_file)

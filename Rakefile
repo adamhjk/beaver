@@ -46,6 +46,7 @@ hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.rubyforge_name = RUBYFORGE_PROJECT if RUBYFORGE_PROJECT
   p.test_globs = ["test/**/test_*.rb"]
   p.clean_globs = CLEAN  #An array of file patterns to delete on clean.
+  p.extra_deps = [ ['activerecord'], ['sqlite3-ruby'] ]
   
   # == Optional
   #p.changes        - A description of the release's latest changes.
