@@ -33,7 +33,8 @@ end
 require 'yaml'
 require 'optparse'
 
-config_file = "/etc/beaver/beaver.yml"
+config_file = nil
+config_file = "/etc/beaver/beaver.yml" if FileTest.file?("/etc/beaver/beaver.yml")
 job_file    = nil
 dry_run     = nil
 debug       = false
