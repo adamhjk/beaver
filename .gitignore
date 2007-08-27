@@ -2,3 +2,4 @@ logs/*
 db/beaver.sqlite
 doc/*
 package/*
+pkg/*
