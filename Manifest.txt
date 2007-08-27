@@ -17,7 +17,6 @@ lib/beaver/job.rb
 lib/beaver/rename.rb
 lib/beaver/transfer.rb
 lib/beaver/version.rb
-logs/database.log
 setup.rb
 tasks/migrate.rb
 test/data/beaver.yml
