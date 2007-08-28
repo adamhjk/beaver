@@ -76,6 +76,13 @@ config.setup_database
 unless FileTest.file?(File.expand_path(config.db["database"]))
   config.migrate_database() 
 end
+
 job = Beaver::Job.new(config)
-job.load(job_file)
+begin
+  job.load(job_file)
+rescue
+  job.cleanup
+  raise
+end
+job.cleanup
 exit 0

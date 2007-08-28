@@ -59,7 +59,6 @@ module Beaver
     
     # Get a configuration value.
     def get(key)
-      @logger.debug("Getting value for #{key}")
       @variables.has_key?(key) ? @variables[key] : nil 
     end
     
@@ -219,6 +218,12 @@ module Beaver
     # instance.  
     def load(scriptfile)
       eval(IO.read(scriptfile))
+    end
+    
+    def cleanup
+      @files.each do |file|
+        file.destroy unless file.status == "waiting"
+      end
     end
     
     private
