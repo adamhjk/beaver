@@ -229,6 +229,7 @@ module Beaver
         set(:transfer_user => config.transfer_user)
         set(:transfer_host => config.transfer_host)
         set(:transfer_ssh_key => config.transfer_ssh_key)
+        set(:transfer_to => config.transfer_to)
         if config.log_level
           case config.log_level
           when "DEBUG"
