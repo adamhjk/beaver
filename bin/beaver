@@ -89,6 +89,7 @@ unless FileTest.file?(File.expand_path(config.db["database"]))
 end
 
 job = Beaver::Job.new(config)
+# Lets you set arbitrary variables in jobs.
 variable_set.each do |key, value|
   job.set({ key => value })
 end
