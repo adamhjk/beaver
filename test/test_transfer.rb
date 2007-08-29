@@ -60,6 +60,15 @@ class TestTransfer < Test::Unit::TestCase
     end
   end
   
+  def test_scp
+    TestHelp.if_live_tests do
+      test_cp
+      result = @transfer.cp(TestHelp::TRANSFER_FILE, ENV["LIVE_USER"], ENV["LIVE_HOST"], TestHelp::LANDING, ENV["LIVE_KEY"])
+      assert(result, "cp command successful")
+      assert(FileTest.file?(TestHelp::LANDING_FILE), "#{TestHelp::LANDING_FILE} should exist")
+    end
+  end
+  
   def teardown
     File.unlink(TestHelp::LANDING_FILE) if FileTest.file?(TestHelp::LANDING_FILE)
     Dir.delete(TestHelp::LANDING) if FileTest.directory?(TestHelp::LANDING)

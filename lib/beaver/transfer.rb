@@ -28,6 +28,7 @@ module Beaver
       @rsync = `which rsync`.chomp!
       @ssh = `which ssh`.chomp!
       @scp = `which scp`.chomp!
+      @cp = `which cp`.chomp!
     end
     
     # Takes a list of files to transfer, and a set of arguments.  Requires
@@ -58,6 +59,11 @@ module Beaver
     # Run an ssh command on a remote host.
     def ssh(user, host, cmd, key)
       run_command("#{@ssh} #{SSH_OPTIONS} -i '#{key}' #{user}@#{host} '#{cmd}' 2>&1")
+    end
+    
+    # Copy files with cp
+    def cp(file, user, host, rpath, key)
+      run_command("#{@cp} #{file} #{rpath}")
     end
     
     private
