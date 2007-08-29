@@ -38,6 +38,7 @@ config_file = "/etc/beaver/beaver.yml" if FileTest.file?("/etc/beaver/beaver.yml
 job_file    = nil
 dry_run     = nil
 debug       = false
+variable_set = Hash.new
 
 opts = OptionParser.new do |opts|
   opts.banner = "Usage: #{$0} (options) -j JOBFILE"
@@ -50,6 +51,16 @@ opts = OptionParser.new do |opts|
   opts.on("-n", "--no-action", "Don't do anything, just print what you would do.") do |n|
     dry_run = true
     debug   = true
+  end
+  opts.on("-s ONE,TWO", "--set ONE,TWO", "A list of variables to set") do |set|
+    set.each do |s|
+      key, value = s.split('=')
+      if value
+        variable_set[key.to_sym] = value
+      else
+        variable_set[key.to_sym] = true
+      end
+    end
   end
   opts.on("-d", "Show debug output.") do |d|
     debug = true
@@ -78,6 +89,9 @@ unless FileTest.file?(File.expand_path(config.db["database"]))
 end
 
 job = Beaver::Job.new(config)
+variable_set.each do |key, value|
+  job.set({ key => value })
+end
 begin
   job.load(job_file)
 rescue
