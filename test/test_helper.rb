@@ -40,8 +40,9 @@ class TestHelp
       :adapter => 'sqlite3',
       :database => DBFILE
     ) 
-    ActiveRecord::Base.logger = Logger.new(File.open(File.expand_path(File.join(File.dirname(__FILE__), '..', 'logs', 'database.log')), 'a'))  
-
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+    ActiveRecord::Base.logger.sev_threshold = Logger::FATAL
+    ActiveRecord::Migration.verbose = false
     ActiveRecord::Migrator.migrate(
       File.expand_path(File.join(File.dirname(__FILE__), '..', 'db', 'migrate')),
       nil  
