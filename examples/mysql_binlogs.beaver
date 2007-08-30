@@ -1,5 +1,5 @@
 #
-# Compress and copy binlogs
+# Compress and copy mysql binlogs
 #
 
 set  :source => "mysql-binlogs"
