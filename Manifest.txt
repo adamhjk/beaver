@@ -4,6 +4,8 @@ Manifest.txt
 README.txt
 Rakefile
 bin/beaver
+examples/find_files.beaver
+examples/mysql_binlogs.beaver
 config/beaver.yml
 config/database.yml
 db/migrate/001_create_logs.rb

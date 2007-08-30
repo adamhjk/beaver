@@ -16,8 +16,7 @@ EMAIL = "adam@hjksolutions.com"
 DESCRIPTION = "Beaver fetches logs, and stores them someplace else."
 GEM_NAME = "beaver" # what ppl will type to install your gem
 RUBYFORGE_PROJECT = "beaver" # The unix name for your project
-HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
-
+HOMEPATH = "http://oss.hjksolutions.com/beaver"
 
 NAME = "beaver"
 REV = nil # UNCOMMENT IF REQUIRED: File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
