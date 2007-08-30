@@ -1,0 +1,18 @@
+#
+# Compress and copy binlogs
+#
+
+set  :source => "mysql-binlogs"
+want :binlog_dir
+find(get(:binlog_dir)) do |file|
+  if file =~ /mysql-bin.\d+/
+    lsof_output = `lsof #{file}` 
+    if lsof_output !~ /NODE/
+      add_file(file)
+    end
+  end
+end
+compress :type => :gzip
+rename   :prepend => `hostname`.chomp! + "_"
+transfer :with => :scp
+delete   :keep => 10

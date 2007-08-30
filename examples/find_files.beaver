@@ -1,0 +1,6 @@
+set(:source => "Find Files")
+want(:find_directory, :find_file)
+
+find(get(:find_directory)) do |file|
+  add_file(file) if file == get(:find_file)
+end

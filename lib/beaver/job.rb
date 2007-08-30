@@ -151,9 +151,11 @@ module Beaver
         @files.each do |file|
           result = block.call(file.currentfile)
           if result == false
+            @logger.debug("Saving #{log.name} and #{log.currentfile}")
             file.status = "waiting"
             file.save
           else
+            @logger.debug("Deleting #{log.name} and #{log.currentfile}")
             file.destroy
           end
         end
