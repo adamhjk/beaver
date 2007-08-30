@@ -165,15 +165,15 @@ class TestJob < Test::Unit::TestCase
       find_files()
       @job.set(:transfer_user => ENV["LIVE_USER"])
       @job.set(:transfer_host => ENV["LIVE_HOST"])
-      @job.set(:transfer_to   => TestHelp::TestHelp::LANDING)
+      @job.set(:transfer_to   => TestHelp::LANDING)
       @job.set(:transfer_ssh_key  => ENV["LIVE_KEY"])
       result = @job.transfer(:with => :scp)
       assert(result, "Transfer successful")
-      assert(FileTest.directory?(TestHelp::TestHelp::LANDING), "#{TestHelp::TestHelp::LANDING} should exist.")
+      assert(FileTest.directory?(TestHelp::LANDING), "#{TestHelp::LANDING} should exist.")
       @job.files.each do |file|
         filename = File.basename(file.name)
-        assert(FileTest.file?(File.join(TestHelp::TestHelp::LANDING, filename)), "Files have been transferred")
-        File.unlink(File.join(TestHelp::TestHelp::LANDING, filename)) if FileTest.file?(File.join(TestHelp::TestHelp::LANDING, filename))
+        assert(FileTest.file?(File.join(TestHelp::LANDING, filename)), "Files have been transferred")
+        File.unlink(File.join(TestHelp::LANDING, filename)) if FileTest.file?(File.join(TestHelp::LANDING, filename))
       end
     end
   end
@@ -225,6 +225,7 @@ class TestJob < Test::Unit::TestCase
     files = @job.files.collect { |f| [ f.currentfile, f.name ] }
     @job.delete(:keep => 2)
     waiting = Beaver::DB::Log.find(:all, :conditions => { :status => "waiting" })
+    should_keep = waiting.length
     waiting.each do |file|
       assert(FileTest.file?(file.name), "#{file.name} File should exist")
       assert(FileTest.file?(file.currentfile), "#{file.currentfile} File should exist")
@@ -236,6 +237,9 @@ class TestJob < Test::Unit::TestCase
       assert(! FileTest.file?(file[0]), "#{file[0]} should not exist")
       assert(! FileTest.file?(file[1]), "#{file[1]} should not exist")
     end
+    @job.cleanup
+    waiting = Beaver::DB::Log.find(:all, :conditions => { :status => "waiting" })
+    assert(should_keep == waiting.length, "Still have the waiting files after cleanup")
   end
   
   def test_load

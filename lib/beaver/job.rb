@@ -159,15 +159,15 @@ module Beaver
         end
       elsif args
         raise ArgumentError, "You must have :keep as an argument" unless args[:keep]
-        logs = Beaver::DB::Log.find(:all, :order => "logdate DESC")
+        logs = Beaver::DB::Log.find(:all, :conditions => [ "source = ?", get(:source) ], :order => "logdate DESC")
         count = 1
         logs.each do |log|
           if count <= args[:keep]
-            puts "Saving #{log.name} and #{log.currentfile}"
+            @logger.debug("Saving #{log.name} and #{log.currentfile}")
             log.status = "waiting"
             log.save
           else
-            puts "Deleting #{log.name} and #{log.currentfile}"
+            @logger.debug("Deleting #{log.name} and #{log.currentfile}")
             delete_log(log)
           end
           count += 1
@@ -244,7 +244,9 @@ module Beaver
     end
     
     def cleanup
-      @files.each do |file|
+      logs = Beaver::DB::Log.find(:all, :conditions => [ "source = ? and status != ?", get(:source), "waiting" ])
+      logs.each do |file|
+        puts file.status
         file.destroy unless file.status == "waiting"
       end
     end

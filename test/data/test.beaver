@@ -2,14 +2,14 @@
 
 # Configure this job
 set :source => "unit test"
-set :compress_directory => COMPRESSDIR
-set :rename_directory => RENAMEDIR
+set :compress_directory => TestHelp::COMPRESSDIR
+set :rename_directory => TestHelp::RENAMEDIR
 set :transfer_user => ENV["LIVE_USER"]
 set :transfer_host => ENV["LIVE_HOST"]
 set :transfer_ssh_key  => ENV["LIVE_KEY"]
 set :transfer_to => "/tmp"
 
-find(FINDDIR) do |file|
+find(TestHelp::FINDDIR) do |file|
   add_file(file) if file =~ /foobar/
 end
 compress(:with => :gzip)
