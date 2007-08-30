@@ -23,7 +23,8 @@ module Beaver
   # Deletes files
   class Config    
     attr_accessor :db, :compress_directory, :rename_directory, 
-                  :transfer_user, :transfer_host, :transfer_ssh_key, :log_level, :transfer_to
+                  :transfer_user, :transfer_host, :transfer_ssh_key, :log_level, 
+                  :transfer_to, :append_source, :append_hostname, :append_transfer_date
     
    #compress_directory: COMPRESSDIR
    #rename_directory: RENAMEDIR
@@ -47,6 +48,9 @@ module Beaver
       @transfer_ssh_key = nil
       @transfer_to = nil
       @log_level = "ERROR"
+      @append_source = false
+      @append_hostname = false
+      @append_transfer_date = false
       load(config_file) if config_file
     end
     
@@ -64,6 +68,9 @@ module Beaver
       @transfer_host = config["transfer_host"] if config.has_key?("transfer_host")
       @transfer_ssh_key = config["transfer_ssh_key"] if config.has_key?("transfer_ssh_key")
       @transfer_to = config["transfer_to"] if config.has_key?("transfer_to")
+      @append_source = config["append_source"] if config.has_key?("append_source")
+      @append_hostname = config["append_hostname"] if config.has_key?("append_hostname")
+      @append_transfer_date = config["append_transfer_date"] if config.has_key?("append_transfer_date")
     end
     
     def make_missing_dirs

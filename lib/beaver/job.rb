@@ -16,6 +16,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 require 'logger'
+require 'date'
 
 module Beaver
   
@@ -204,6 +205,15 @@ module Beaver
         args[:user]    ||= get(:transfer_user)
         args[:host]    ||= get(:transfer_host)
         args[:to]      ||= get(:transfer_to)
+        if get(:append_source)
+          args[:to] = File.join(args[:to], get(:source))
+        end
+        if get(:append_hostname)
+          args[:to] = File.join(args[:to], `hostname`.chomp!)
+        end
+        if get(:append_transfer_date)
+          args[:to] = File.join(args[:to], transfer_date())
+        end
         args[:ssh_key] ||= get(:transfer_ssh_key)
         args[:mkdir]   ||= true
         args[:with]    ||= nil
@@ -239,6 +249,11 @@ module Beaver
       end
     end
     
+    def transfer_date
+      now = DateTime.now
+      now.strftime("%Y%m%d")
+    end
+    
     private
       
       def set_from_config(config)
@@ -248,6 +263,9 @@ module Beaver
         set(:transfer_host => config.transfer_host)
         set(:transfer_ssh_key => config.transfer_ssh_key)
         set(:transfer_to => config.transfer_to)
+        set(:append_source => config.append_source)
+        set(:append_hostname => config.append_hostname)
+        set(:append_transfer_date => config.append_transfer_date)
         if config.log_level
           case config.log_level
           when "DEBUG"
