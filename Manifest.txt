@@ -30,7 +30,7 @@ test/data/transfer/transfer_file
 test/data/compress/empty
 test/data/delete/empty
 test/data/rename/empty
-test/data/db/empty
+test/db/empty
 test/test_compress.rb
 test/test_config.rb
 test/test_db.rb
