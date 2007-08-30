@@ -62,6 +62,19 @@ module Beaver
       @variables.has_key?(key) ? @variables[key] : nil 
     end
     
+    # Ensure that all the variables this job needs are set.  Example:
+    #
+    #    want(:binlog_dir, :transfer_host)
+    #
+    # Would make sure that both binlog_dir and transfer_host are set.
+    def want(*values)
+      values.each do |v|
+        unless @variables.has_key?(v)
+          raise ArgumentError, "This job requires #{v.to_s} to be set."
+        end
+      end
+    end
+    
     # Find files underneath a directory.  Requires a block, which will be
     # passed each file.  Should call add_file(file) for any files that should
     # be included in this job.

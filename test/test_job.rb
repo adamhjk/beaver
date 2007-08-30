@@ -30,6 +30,13 @@ class TestJob < Test::Unit::TestCase
     assert(@job.get(:source) == "bmonster", "Source is bmonster")
   end
   
+  def test_want
+    result = @job.set(:kings_of_leon => "good band")
+    assert(@job.get(:kings_of_leon) == "good band", 'Could not set value')
+    assert_nothing_raised(ArgumentError) { @job.want(:kings_of_leon) }
+    assert_raise(ArgumentError) { @job.want(:starbucks) }
+  end
+  
   def test_add_file
     failed = false
     begin
