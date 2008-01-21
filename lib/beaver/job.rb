@@ -111,7 +111,7 @@ module Beaver
         )
         log_file.save
       end
-      @files << log_file unless log_file.status == 'waiting'
+      @files << log_file unless log_file.status == 'waiting' || log_file.status == "transferred"
       log_file
     end
     
@@ -248,8 +248,7 @@ module Beaver
     def cleanup
       logs = Beaver::DB::Log.find(:all, :conditions => [ "source = ? and status != ?", get(:source), "waiting" ])
       logs.each do |file|
-        puts file.status
-        file.destroy unless file.status == "waiting"
+        file.destroy unless file.status == "transferred"
       end
     end
     
