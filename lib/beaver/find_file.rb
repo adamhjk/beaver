@@ -42,8 +42,11 @@ module Beaver
         stat = File.stat(file)
         datetime = stat.mtime
       end
-      file_entry = [ file, datetime, Digest::SHA1.hexdigest(IO.read(file)) ]
-      @files << file_entry unless @files.detect { |f| f == file_entry }
+      f = File.open(file) 
+      d = Digest::SHA1.new 
+      f.each {|line| d.update(line)} 
+      d.hexdigest 
+      file_entry = [ file, datetime, d ]
       file_entry
     end
     
