@@ -171,6 +171,7 @@ module Beaver
           else
             @logger.debug("Deleting #{log.name} and #{log.currentfile}")
             delete_log(log)
+            log.destroy
           end
           count += 1
         end
@@ -178,6 +179,7 @@ module Beaver
         logs = Beaver::DB::Log.find(:all)
         logs.each do |log|
           delete_log(log)
+          log.destroy
         end
       end
     end
@@ -246,10 +248,10 @@ module Beaver
     end
     
     def cleanup
-      logs = Beaver::DB::Log.find(:all, :conditions => [ "source = ? and status != ?", get(:source), "waiting" ])
-      logs.each do |file|
-        file.destroy unless file.status == "transferred"
-      end
+      # logs = Beaver::DB::Log.find(:all, :conditions => [ "source = ? and status != ?", get(:source), "waiting" ])
+      # logs.each do |file|
+      #   file.destroy unless file.status == "transferred"
+      # end
     end
     
     def transfer_date
