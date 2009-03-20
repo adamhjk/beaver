@@ -1,0 +1,13 @@
+#
+# Compress and copy postgresql backups
+#
+
+set  :source => "pg-backups"
+want :backup_dir
+find(get(:backup_dir)) do |file|
+  add_file(file) if file =~ /.+pgdump$/
+end
+compress :type => :gzip
+rename   :prepend => `hostname`.chomp! + "_"
+transfer :with => :scp
+delete   :keep => 10
